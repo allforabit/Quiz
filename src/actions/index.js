@@ -1,19 +1,20 @@
 export const startQuiz = () => {
   return {
     type: 'START_QUIZ'
-  }
-}
+  };
+};
 
 export const finishQuiz = () => {
   return {
     type: 'FINISH_QUIZ'
-  }
-}
+  };
+};
 
-export const submitAnswer = (id) => {
+export const submitQuestion = (id, answerId) => {
   return {
-    type: 'SUBMIT_ANSWER',
-    id: id
-  }
-}
+    type: 'SUBMIT_QUESTION',
+    questionId: id,
+    answerId: answerId
+  };
+};
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import quizApp from './reducer'
+import QuizApp from './reducers'
 import App from './components/App'
 
 const questions = [
@@ -23,10 +23,12 @@ const questions = [
   }
 ]
 
-let store = createStore(quizApp, {
-  status: "welcome",
-  currentQuestionId: 0,
-  questions: questions
+let store = createStore(QuizApp, {
+  quiz: {
+    status: "welcome",
+    currentQuestionId: 0,
+    questions: questions
+  }
 })
 
 render(

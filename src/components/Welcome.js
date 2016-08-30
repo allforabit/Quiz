@@ -1,4 +1,4 @@
-import  React, { PropTypes } from 'react'
+import  React, { PropTypes } from 'react';
 
 const Welcome = ({onClickStart}) => (
   <div>
@@ -9,10 +9,10 @@ const Welcome = ({onClickStart}) => (
     Start
   </button>
   </div>
-)
+);
 
 Welcome.propTypes = {
   onClickStart: PropTypes.func
-}
+};
 
-export default Welcome
+export default Welcome;
