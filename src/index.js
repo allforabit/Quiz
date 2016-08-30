@@ -8,18 +8,18 @@ import App from './components/App'
 const questions = [
   {
     text: "What's the thing?",
-    answers: ["The first thing", "The second thing", "The third thing"],
+    answerOptions: ["The first thing", "The second thing", "The third thing"],
     correctAnswer: 1
   },
   {
     text: "What's the other thing?",
-    answers: ["This", "This", "Or this"],
+    answerOptions: ["This", "This", "Or this"],
     correctAnswer: 0
   },
   {
     text: "What's this other thing?",
-    answers: ["Yo", "No", "So"],
-    correctAnser: 2
+    answerOptions: ["Yo", "No", "So"],
+    correctAnswer: 2
   }
 ]
 
@@ -27,7 +27,8 @@ let store = createStore(QuizApp, {
   quiz: {
     status: "welcome",
     currentQuestionId: 0,
-    questions: questions
+    questions: questions,
+    answers: {}
   }
 })
 

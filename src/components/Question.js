@@ -4,15 +4,20 @@ import Answer from './Answer';
 import { connect } from 'react-redux';
 
 
-let Question = ({ handleSubmit, complete, text, answers, pristine, submitting, answerId}) => {
+let Question = ({ handleSubmit, complete, text, answerOptions, pristine, submitting, answers, currentQuestionId}) => {
 
-  let answerNodes = answers.map((answer, id) => {
-    let checked = parseInt(id) === parseInt(answerId) ? "checked" : "";
+  console.log("qu", currentQuestionId);
+  console.log("an", answers);
+
+  let answerNodes = answerOptions.map((option, id) => {
+    let answer = answers ? parseInt(answers[currentQuestionId]) : null;
+    let checked = id === answer ? "checked" : "";
+
     return (
       <div key={id}>
         <label>
-        <Field name="answerId" component="input" type="radio" value={id} checked={checked} />
-          {answer}
+        <Field name={"answers." + currentQuestionId} component="input" type="radio" value={id} checked={checked} />
+          {option}
         </label>
         </div>);
   });
@@ -20,7 +25,7 @@ let Question = ({ handleSubmit, complete, text, answers, pristine, submitting, a
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>{text}</label>
+      <label>{currentQuestionId} {text}</label>
         <div>
           {answerNodes}
         </div>
@@ -38,9 +43,9 @@ const selector = formValueSelector('question');
 
 Question = connect(
   state => {
-    const answerId = selector(state, 'answerId');
+    const answers = selector(state, 'answers');
     return {
-      answerId: answerId
+      answers: answers
     };
   }
 )(Question);

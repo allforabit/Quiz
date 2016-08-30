@@ -10,10 +10,10 @@ export const finishQuiz = () => {
   };
 };
 
-export const submitQuestion = (id, answerId) => {
+export const submitQuestion = (questionId, answerId) => {
   return {
     type: 'SUBMIT_QUESTION',
-    questionId: id,
+    questionId: questionId,
     answerId: answerId
   };
 };

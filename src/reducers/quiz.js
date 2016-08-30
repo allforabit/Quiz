@@ -10,11 +10,21 @@ const quiz = (state = {answers: {}}, action) => {
       status: 'finished'
     });
   case 'SUBMIT_QUESTION':
-    console.log(action);
+
     let answers = state.answers;
-    answers[action.questionId] = action.answerId;
+    console.log("answers", answers);
+    console.log("action", action);
+
+    answers[action.questionId] = parseInt(action.answerId);
+
+    let currentQuestionId = state.currentQuestionId + 1;
+
+    let status = currentQuestionId >= state.questions.length ? 'finished' : 'started';
+
     return Object.assign({}, state, {
-      answers: answers
+      answers: answers,
+      currentQuestionId: currentQuestionId,
+      status: status
     });
 
   default:

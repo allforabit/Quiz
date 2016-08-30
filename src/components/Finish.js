@@ -1,18 +1,18 @@
-import  React, { PropTypes } from 'react'
+import  React, { PropTypes } from 'react';
 
-const Finish = ({onClickStart}) => (
+const Finish = ({onClickStart, score}) => (
     <div>
     <p>
-    Completed
+    Completed you scored: {score}
     </p>
     <button onClick={onClickStart}>
-    Start
+    Start again
   </button>
     </div>
-)
+);
 
 Finish.propTypes = {
   onClickStart: PropTypes.func
-}
+};
 
-export default Finish
+export default Finish;

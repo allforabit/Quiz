@@ -3,8 +3,10 @@ import Question from './Question';
 import Welcome from './Welcome';
 import Finish from './Finish';
 
-const QuizUI = ({status, currentQuestion, onClickStart, onSubmitQuestion}) => {
+const QuizUI = ({status, score, currentQuestionId, currentQuestion, onClickStart, onSubmitQuestion}) => {
   let currentScreen;
+
+  console.log("q", currentQuestionId);
 
   switch(status) {
   case 'started':
@@ -12,12 +14,12 @@ const QuizUI = ({status, currentQuestion, onClickStart, onSubmitQuestion}) => {
     currentScreen = <Question
       {...currentQuestion}
       onSubmit={onSubmitQuestion}
-      initialValues={{currentQuestionId: currentQuestion.id}}
+      currentQuestionId={currentQuestionId}
       />;
 
       break;
   case 'finished':
-    currentScreen = <Finish />;
+    currentScreen = <Finish onClickStart={onClickStart} score={score} />;
       break;
   default:
     currentScreen = <Welcome onClickStart={onClickStart} />;
