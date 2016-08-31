@@ -4,12 +4,6 @@ export const startQuiz = () => {
   };
 };
 
-export const finishQuiz = () => {
-  return {
-    type: 'FINISH_QUIZ'
-  };
-};
-
 export const submitQuestion = (answers) => {
   return {
     type: 'SUBMIT_QUESTION',
