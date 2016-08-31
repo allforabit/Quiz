@@ -3,28 +3,17 @@ const quiz = (state = {answers: {}}, action) => {
   case 'START_QUIZ':
     return Object.assign({}, state, {
       status: 'started',
-      currentQuestionId: 0
-    });
-  case 'FINISH_QUIZ':
-    return Object.assign({}, state, {
-      status: 'finished'
+      currentQuestionIndex: 0
     });
   case 'SUBMIT_QUESTION':
 
-    let answers = state.answers;
-    console.log("answers", answers);
-    console.log("action", action);
-
-    answers[action.questionId] = parseInt(action.answerId);
-
-    let currentQuestionId = state.currentQuestionId + 1;
-
-    let status = currentQuestionId >= state.questions.length ? 'finished' : 'started';
+    let currentQuestionIndex = state.currentQuestionIndex + 1;
+    let status = currentQuestionIndex >= state.questions.length ? 'finished' : 'started';
 
     return Object.assign({}, state, {
-      answers: answers,
-      currentQuestionId: currentQuestionId,
-      status: status
+      currentQuestionIndex: currentQuestionIndex,
+      status: status,
+      answers: action.answers
     });
 
   default:

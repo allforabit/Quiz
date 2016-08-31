@@ -1,22 +1,18 @@
 import React from 'react';
-import { Field, Fields, reduxForm, formValueSelector } from 'redux-form';
-import Answer from './Answer';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
 
-let Question = ({ handleSubmit, complete, text, answerOptions, pristine, submitting, answers, currentQuestionId}) => {
+let Question = ({ handleSubmit, complete, text, answerOptions, pristine, submitting, answers, id, score}) => {
 
-  console.log("qu", currentQuestionId);
-  console.log("an", answers);
-
-  let answerNodes = answerOptions.map((option, id) => {
-    let answer = answers ? parseInt(answers[currentQuestionId]) : null;
-    let checked = id === answer ? "checked" : "";
+  let answerNodes = answerOptions.map((option, idx) => {
+    let answer = answers ? parseInt(answers[id], 10) : null;
+    let checked = idx === answer ? "checked" : "";
 
     return (
-      <div key={id}>
+      <div key={idx}>
         <label>
-        <Field name={"answers." + currentQuestionId} component="input" type="radio" value={id} checked={checked} />
+        <Field name={"answers." + id} component="input" type="radio" value={idx} checked={checked} />
           {option}
         </label>
         </div>);
@@ -25,7 +21,7 @@ let Question = ({ handleSubmit, complete, text, answerOptions, pristine, submitt
   return (
     <form onSubmit={handleSubmit}>
       <div>
-      <label>{currentQuestionId} {text}</label>
+      <label>{text}</label>
         <div>
           {answerNodes}
         </div>

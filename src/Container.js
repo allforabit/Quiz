@@ -7,17 +7,15 @@ const getCurrentQuestion = (questions, id) => {
 };
 
 const mapStateToProps = (state) => {
+  let score = state.quiz.questions
+      .filter(question =>
+              (question.correctAnswer === parseInt(state.quiz.answers[question.id], 10)))
+      .length;
+
   return {
-    currentQuestionId: state.quiz.currentQuestionId,
-    currentQuestion: getCurrentQuestion(state.quiz.questions, state.quiz.currentQuestionId),
+    currentQuestion: getCurrentQuestion(state.quiz.questions, state.quiz.currentQuestionIndex),
     status: state.quiz.status,
-    score: state.quiz.questions.reduce((totalScore, question, idx) => {
-      console.log(state.quiz.answers);
-      if(question.correctAnswer === state.quiz.answers[idx]){
-        return totalScore + 1;
-      }
-      return totalScore;
-    }, 0)
+    score: score
   };
 };
 
@@ -27,8 +25,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(startQuiz());
     },
     onSubmitQuestion: values => {
-      console.log("values", values);
-      dispatch(submitQuestion(values.currentQuestionId, values.answerId));
+      dispatch(submitQuestion(values.answers));
     }
   };
 };
