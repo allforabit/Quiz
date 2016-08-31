@@ -1,9 +1,9 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import QuizApp from './reducers'
-import App from './components/App'
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import QuizApp from './reducers';
+import App from './components/App';
 
 const questions = [
   {
@@ -24,20 +24,20 @@ const questions = [
     answerOptions: ["Yo", "No", "So"],
     correctAnswer: 2
   }
-]
+];
 
 let store = createStore(QuizApp, {
   quiz: {
     status: "welcome",
-    currentQuestionId: 0,
+    currentQuestionIndex: 0,
     questions: questions,
     answers: {}
   }
-})
+});
 
 render(
     <Provider store={store}>
     <App />
     </Provider>,
   document.getElementById('root')
-)
+);
